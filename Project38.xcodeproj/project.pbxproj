@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D70B257E2B2CE04B00399215 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70B257D2B2CE04B00399215 /* DetailViewController.swift */; };
 		D70B25812B2CE17200399215 /* Project38.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D70B257F2B2CE17200399215 /* Project38.xcdatamodeld */; };
+		D70B25852B2CE9E600399215 /* Commit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70B25832B2CE9E600399215 /* Commit+CoreDataClass.swift */; };
+		D70B25862B2CE9E600399215 /* Commit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70B25842B2CE9E600399215 /* Commit+CoreDataProperties.swift */; };
 		D73C1AC62B2B9D9C002892B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1AC52B2B9D9C002892B0 /* AppDelegate.swift */; };
 		D73C1AC82B2B9D9C002892B0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1AC72B2B9D9C002892B0 /* SceneDelegate.swift */; };
 		D73C1ACA2B2B9D9C002892B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1AC92B2B9D9C002892B0 /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		D70B257D2B2CE04B00399215 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D70B25802B2CE17200399215 /* Project38.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Project38.xcdatamodel; sourceTree = "<group>"; };
+		D70B25832B2CE9E600399215 /* Commit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D70B25842B2CE9E600399215 /* Commit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D73C1AC22B2B9D9C002892B0 /* Project38.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project38.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73C1AC52B2B9D9C002892B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D73C1AC72B2B9D9C002892B0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +50,8 @@
 		D70B25822B2CE18500399215 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				D70B25832B2CE9E600399215 /* Commit+CoreDataClass.swift */,
+				D70B25842B2CE9E600399215 /* Commit+CoreDataProperties.swift */,
 				D70B257F2B2CE17200399215 /* Project38.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -160,7 +166,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D70B25852B2CE9E600399215 /* Commit+CoreDataClass.swift in Sources */,
 				D73C1ACA2B2B9D9C002892B0 /* ViewController.swift in Sources */,
+				D70B25862B2CE9E600399215 /* Commit+CoreDataProperties.swift in Sources */,
 				D70B25812B2CE17200399215 /* Project38.xcdatamodeld in Sources */,
 				D73C1AC62B2B9D9C002892B0 /* AppDelegate.swift in Sources */,
 				D73C1AC82B2B9D9C002892B0 /* SceneDelegate.swift in Sources */,
