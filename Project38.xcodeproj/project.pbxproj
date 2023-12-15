@@ -13,6 +13,7 @@
 		D73C1ACD2B2B9D9C002892B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73C1ACB2B2B9D9C002892B0 /* Main.storyboard */; };
 		D73C1ACF2B2B9D9E002892B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D73C1ACE2B2B9D9E002892B0 /* Assets.xcassets */; };
 		D73C1AD22B2B9D9E002892B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73C1AD02B2B9D9E002892B0 /* LaunchScreen.storyboard */; };
+		D793D8B02B2C07D20083B70D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D793D8AF2B2C07D20083B70D /* SwiftyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D793D8B02B2C07D20083B70D /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = Project38;
+			packageProductDependencies = (
+				D793D8AF2B2C07D20083B70D /* SwiftyJSON */,
+			);
 			productName = Project38;
 			productReference = D73C1AC22B2B9D9C002892B0 /* Project38.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = D73C1AB92B2B9D9C002892B0;
+			packageReferences = (
+				D793D8AE2B2C07D20083B70D /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = D73C1AC32B2B9D9C002892B0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -363,6 +371,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D793D8AE2B2C07D20083B70D /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D793D8AF2B2C07D20083B70D /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D793D8AE2B2C07D20083B70D /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D73C1ABA2B2B9D9C002892B0 /* Project object */;
 }
