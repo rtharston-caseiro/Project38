@@ -21,6 +21,8 @@ class ViewController: UITableViewController {
         container = NSPersistentContainer(name: "Project38")
         container.loadPersistentStores { storeDescription, error in
 //            print("sqlite url: \(String(describing: storeDescription.url))")
+            self.container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+            
             if let error {
                 print("Unresolved error \(error)")
             }

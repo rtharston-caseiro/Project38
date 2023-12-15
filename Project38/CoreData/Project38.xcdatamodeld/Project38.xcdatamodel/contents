@@ -5,5 +5,10 @@
         <attribute name="message" attributeType="String"/>
         <attribute name="sha" attributeType="String"/>
         <attribute name="url" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="sha"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
 </model>
