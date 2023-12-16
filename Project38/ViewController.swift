@@ -83,6 +83,8 @@ class ViewController: UITableViewController {
             
             self.saveContext()
             self.loadSavedData()
+        } else {
+            print("NOTHING HERE")
         }
     }
     
