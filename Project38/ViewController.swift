@@ -249,7 +249,11 @@ extension ViewController: NSFetchedResultsControllerDelegate {
     ) {
         switch type {
         case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            if tableView.numberOfRows(inSection: indexPath!.section) == 1 {
+                tableView.deleteSections([indexPath!.section], with: .automatic)
+            } else {
+                tableView.deleteRows(at: [indexPath!], with: .automatic)
+            }
         default:
             break
         }
