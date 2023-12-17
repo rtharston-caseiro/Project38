@@ -179,7 +179,7 @@ class ViewController: UITableViewController {
         
         let commit = commits[indexPath.row]
         cell.textLabel!.text = commit.message
-        cell.detailTextLabel!.text = commit.date.description
+        cell.detailTextLabel!.text = "By \(commit.author.name) on \(commit.date.description)"
         
         return cell
     }
