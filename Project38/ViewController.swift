@@ -73,12 +73,17 @@ class ViewController: UITableViewController {
             
             let formatter = ISO8601DateFormatter()
             for jsonCommit in jsonCommits {
+                let authorName = jsonCommit["commit"]["committer"]["name"].stringValue
+                let authorEmail = jsonCommit["commit"]["committer"]["email"].stringValue
+                
+                let author = self.fetchOrCreateAuthor(name: authorName, email: authorEmail)
+                
                 let sha = jsonCommit["sha"].stringValue
                 let message = jsonCommit["commit"]["message"].stringValue
                 let url = jsonCommit["html_url"].stringValue
                 let date = formatter.date(from: jsonCommit["commit"]["committer"]["date"].stringValue) ?? Date()
                 
-                self.configureCommit(sha: sha, message: message, url: url, date: date)
+                self.configureCommit(sha: sha, message: message, url: url, date: date, author: author)
             }
             
             self.saveContext()
@@ -89,13 +94,23 @@ class ViewController: UITableViewController {
     }
     
     @MainActor
-    private func configureCommit(sha: String, message: String, url: String, date: Date) {
-        let commit = Commit(context: self.container.viewContext)
+    private func fetchOrCreateAuthor(name: String, email: String) -> Author {
+        // See if the Author already exists
+        let authorRequest = Author.createFetchRequest()
+        authorRequest.predicate = NSPredicate(format: "name == %@", name)
         
-        commit.sha = sha
-        commit.message = message
-        commit.url = url
-        commit.date = date
+        if let author = try? container.viewContext.fetch(authorRequest).first {
+            // we have this author already
+            return author
+        }
+        
+        // we didn't find a saved author, so we'll create a new one
+        return Author(context: container.viewContext, name: name, email: email)
+    }
+    
+    @MainActor
+    private func configureCommit(sha: String, message: String, url: String, date: Date, author: Author) {
+        _ = Commit(context: self.container.viewContext, sha: sha, message: message, url: url, date: date, author: author)
     }
     
     @MainActor
