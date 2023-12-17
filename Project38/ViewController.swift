@@ -186,10 +186,12 @@ class ViewController: UITableViewController {
             self.commitPredicate = NSPredicate(format: "author.name == 'Joe Groff'")
             self.loadSavedData()
         })
-        ac.addAction(UIAlertAction(title: "Show all commits", style: .default) { [unowned self] _ in
-            self.commitPredicate = nil
-            self.loadSavedData()
-        })
+        if commitPredicate != nil {
+            ac.addAction(UIAlertAction(title: "Show all commits", style: .default) { [unowned self] _ in
+                self.commitPredicate = nil
+                self.loadSavedData()
+            })
+        }
         
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(ac, animated: true)
