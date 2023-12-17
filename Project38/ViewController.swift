@@ -91,19 +91,29 @@ class ViewController: UITableViewController {
             }
             
             self.saveContext()
+            self.saveNewestCommitDate()
             self.loadSavedData()
         } else {
             print("NOTHING HERE")
         }
     }
     
+    private static let newestCommitDateKey = "NewestCommitDate"
+    
     @MainActor
     func getNewestCommitDate() -> Date? {
+        UserDefaults.standard.object(forKey: Self.newestCommitDateKey) as? Date
+    }
+    
+    @MainActor
+    func saveNewestCommitDate() {
         let newestRequest = Commit.createFetchRequest()
         newestRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         newestRequest.fetchLimit = 1
         
-        return try? container.viewContext.fetch(newestRequest).first?.date
+        if let date = try? container.viewContext.fetch(newestRequest).first?.date {
+            UserDefaults.standard.setValue(date, forKey: Self.newestCommitDateKey)
+        }
     }
     
     @MainActor
