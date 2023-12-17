@@ -11,5 +11,10 @@ import CoreData
 
 @objc(Author)
 public class Author: NSManagedObject {
-
+    @MainActor
+    convenience init(context: NSManagedObjectContext, name: String, email: String) {
+        self.init(context: context)
+        self.name = name
+        self.email = email
+    }
 }
