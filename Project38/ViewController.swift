@@ -59,7 +59,12 @@ class ViewController: UITableViewController {
     }
     
     func fetchCommits() async {
-        let commitQuery = URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100")!
+        let formatter = ISO8601DateFormatter()
+        // Get the date of the newest commit, or default to the distant past if no commits were already found
+        // If a date was found, add one so it will only fetch commmits _after_ the newest commit date
+        let newestCommitDate = getNewestCommitDate()?.addingTimeInterval(1) ?? Date.distantPast
+        let since = formatter.string(from: newestCommitDate)
+        let commitQuery = URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100&since=\(since)")!
 
         if let (data, _) = try? await URLSession.shared.data(from: commitQuery) {
             guard let dataString = String(data: data, encoding: .utf8) else {
@@ -71,7 +76,6 @@ class ViewController: UITableViewController {
             
             print("Received \(jsonCommits.count) new commits.")
             
-            let formatter = ISO8601DateFormatter()
             for jsonCommit in jsonCommits {
                 let authorName = jsonCommit["commit"]["committer"]["name"].stringValue
                 let authorEmail = jsonCommit["commit"]["committer"]["email"].stringValue
@@ -91,6 +95,15 @@ class ViewController: UITableViewController {
         } else {
             print("NOTHING HERE")
         }
+    }
+    
+    @MainActor
+    func getNewestCommitDate() -> Date? {
+        let newestRequest = Commit.createFetchRequest()
+        newestRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        newestRequest.fetchLimit = 1
+        
+        return try? container.viewContext.fetch(newestRequest).first?.date
     }
     
     @MainActor
