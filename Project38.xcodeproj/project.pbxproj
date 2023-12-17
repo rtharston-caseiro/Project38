@@ -18,6 +18,8 @@
 		D73C1ACF2B2B9D9E002892B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D73C1ACE2B2B9D9E002892B0 /* Assets.xcassets */; };
 		D73C1AD22B2B9D9E002892B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73C1AD02B2B9D9E002892B0 /* LaunchScreen.storyboard */; };
 		D793D8B02B2C07D20083B70D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D793D8AF2B2C07D20083B70D /* SwiftyJSON */; };
+		D7C7DFD72B2E7655008238A5 /* Author+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C7DFD52B2E7655008238A5 /* Author+CoreDataClass.swift */; };
+		D7C7DFD82B2E7655008238A5 /* Author+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C7DFD62B2E7655008238A5 /* Author+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		D73C1ACE2B2B9D9E002892B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D73C1AD12B2B9D9E002892B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D73C1AD32B2B9D9E002892B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7C7DFD52B2E7655008238A5 /* Author+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D7C7DFD62B2E7655008238A5 /* Author+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,8 @@
 		D70B25822B2CE18500399215 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				D7C7DFD52B2E7655008238A5 /* Author+CoreDataClass.swift */,
+				D7C7DFD62B2E7655008238A5 /* Author+CoreDataProperties.swift */,
 				D70B25832B2CE9E600399215 /* Commit+CoreDataClass.swift */,
 				D70B25842B2CE9E600399215 /* Commit+CoreDataProperties.swift */,
 				D70B257F2B2CE17200399215 /* Project38.xcdatamodeld */,
@@ -168,8 +174,10 @@
 			files = (
 				D70B25852B2CE9E600399215 /* Commit+CoreDataClass.swift in Sources */,
 				D73C1ACA2B2B9D9C002892B0 /* ViewController.swift in Sources */,
+				D7C7DFD82B2E7655008238A5 /* Author+CoreDataProperties.swift in Sources */,
 				D70B25862B2CE9E600399215 /* Commit+CoreDataProperties.swift in Sources */,
 				D70B25812B2CE17200399215 /* Project38.xcdatamodeld in Sources */,
+				D7C7DFD72B2E7655008238A5 /* Author+CoreDataClass.swift in Sources */,
 				D73C1AC62B2B9D9C002892B0 /* AppDelegate.swift in Sources */,
 				D73C1AC82B2B9D9C002892B0 /* SceneDelegate.swift in Sources */,
 				D70B257E2B2CE04B00399215 /* DetailViewController.swift in Sources */,
