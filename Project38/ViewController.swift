@@ -145,6 +145,11 @@ class ViewController: UITableViewController {
             self.commitPredicate = NSPredicate(format: "date > %@", twelveHoursAgo as NSDate)
             self.loadSavedData()
         })
+        // Joe Groff has a website called duriansoftware.com
+        ac.addAction(UIAlertAction(title: "Show only Durian commits", style: .default) { [unowned self] _ in
+            self.commitPredicate = NSPredicate(format: "author.name == 'Joe Groff'")
+            self.loadSavedData()
+        })
         ac.addAction(UIAlertAction(title: "Show all commits", style: .default) { [unowned self] _ in
             self.commitPredicate = nil
             self.loadSavedData()
