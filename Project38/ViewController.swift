@@ -10,7 +10,7 @@ import UIKit
 
 import SwiftyJSON
 
-class ViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class ViewController: UITableViewController {
     var container: NSPersistentContainer!
 
     var fetchedResultsController: NSFetchedResultsController<Commit>!
@@ -140,14 +140,14 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
     func loadSavedData() {
         if fetchedResultsController == nil {
             let request = Commit.createFetchRequest()
-            let sort = NSSortDescriptor(keyPath: \Commit.date, ascending: false)
+            let sort = NSSortDescriptor(keyPath: \Commit.author.name, ascending: true)
             request.sortDescriptors = [sort]
             request.fetchBatchSize = 20
             
             fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: request,
                 managedObjectContext: self.container.viewContext,
-                sectionNameKeyPath: nil,
+                sectionNameKeyPath: "author.name",
                 cacheName: nil
             )
             fetchedResultsController.delegate = self
@@ -201,9 +201,11 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         fetchedResultsController.sections?.count ?? 0
     }
     
-    // This is mostly for me for debugging, so I can easily see how many commits are loaded in the app
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        String(fetchedResultsController.sections?[section].numberOfObjects ?? 0)
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // This was mostly for me for debugging, so I could easily see how many commits are loaded in the app
+//        String(fetchedResultsController.sections?[section].numberOfObjects ?? 0)
+        
+        fetchedResultsController.sections?[section].name
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -237,3 +239,19 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
     }
 }
 
+extension ViewController: NSFetchedResultsControllerDelegate {
+    func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChange anObject: Any,
+        at indexPath: IndexPath?,
+        for type: NSFetchedResultsChangeType,
+        newIndexPath: IndexPath?
+    ) {
+        switch type {
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+        default:
+            break
+        }
+    }
+}
