@@ -16,6 +16,8 @@ class ViewController: UITableViewController {
     var fetchedResultsController: NSFetchedResultsController<Commit>!
     var commitPredicate: NSPredicate?
     
+    var authorFilter: Author?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -153,8 +155,19 @@ class ViewController: UITableViewController {
             fetchedResultsController.delegate = self
         }
         
-        
-        fetchedResultsController.fetchRequest.predicate = commitPredicate
+        // If an author filter is set and a commit filter then apply both, otherwise only apply one
+        if let authorFilter = self.authorFilter {
+            let authorPredicate = NSPredicate(format: "author.name == %@", authorFilter.name)
+            if let commitPredicate {
+                fetchedResultsController.fetchRequest.predicate =  NSCompoundPredicate(
+                    andPredicateWithSubpredicates: [commitPredicate, authorPredicate]
+                )
+            } else {
+                fetchedResultsController.fetchRequest.predicate = authorPredicate
+            }
+        } else {
+            fetchedResultsController.fetchRequest.predicate = commitPredicate
+        }
         
         do {
             try fetchedResultsController.performFetch()
@@ -172,20 +185,22 @@ class ViewController: UITableViewController {
             self.commitPredicate = NSPredicate(format: "message CONTAINS[c] 'fix'")
             self.loadSavedData()
         })
-        ac.addAction(UIAlertAction(title: "Ignore Pull Requests", style: .default) { [unowned self] _ in
-            self.commitPredicate = NSPredicate(format: "NOT message BEGINSWITH 'Merge pull request'")
-            self.loadSavedData()
-        })
         ac.addAction(UIAlertAction(title: "Show only recent", style: .default) { [unowned self] _ in
             let twelveHoursAgo = Date().addingTimeInterval(-43200)
             self.commitPredicate = NSPredicate(format: "date > %@", twelveHoursAgo as NSDate)
             self.loadSavedData()
         })
-        // Joe Groff has a website called duriansoftware.com
-        ac.addAction(UIAlertAction(title: "Show only Durian commits", style: .default) { [unowned self] _ in
-            self.commitPredicate = NSPredicate(format: "author.name == 'Joe Groff'")
-            self.loadSavedData()
-        })
+        if authorFilter == nil {
+            ac.addAction(UIAlertAction(title: "Ignore Pull Requests", style: .default) { [unowned self] _ in
+                self.commitPredicate = NSPredicate(format: "NOT message BEGINSWITH 'Merge pull request'")
+                self.loadSavedData()
+            })
+            // Joe Groff has a website called duriansoftware.com
+            ac.addAction(UIAlertAction(title: "Show only Durian commits", style: .default) { [unowned self] _ in
+                self.commitPredicate = NSPredicate(format: "author.name == 'Joe Groff'")
+                self.loadSavedData()
+            })
+        }
         if commitPredicate != nil {
             ac.addAction(UIAlertAction(title: "Show all commits", style: .default) { [unowned self] _ in
                 self.commitPredicate = nil

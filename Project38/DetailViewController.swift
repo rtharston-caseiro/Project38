@@ -17,17 +17,20 @@ class DetailViewController: UIViewController {
 
         if let detailItem {
             detailLabel.text = detailItem.message
-//            navigationItem.rightBarButtonItem = UIBarButtonItem(
-//                title: "Commit 1/\(detailItem.author.commits.count)",
-//                style: .plain,
-//                target: self,
-//                action: #selector(showAuthorCommits)
-//            )
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: "Commit 1/\(detailItem.author.commits.count)",
+                style: .plain,
+                target: self,
+                action: #selector(showAuthorCommits)
+            )
         }
     }
     
     @objc func showAuthorCommits() {
-        // TODO: fill this in
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Commits") as? ViewController {
+            vc.authorFilter = detailItem?.author
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 
